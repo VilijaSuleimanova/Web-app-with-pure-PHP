@@ -60,6 +60,7 @@ require_once(DIR.'/app/bootstrap.php');
                 <form action="" method="post" autocomplete="off">
 
                 <!-- Username input -->
+                  <small id="un"></small>
                   <div class="input-group mb-3">
                     <div class="input-group-prepend">
                       <span class="input-group-text">
@@ -67,7 +68,6 @@ require_once(DIR.'/app/bootstrap.php');
                       </span>
                       </div>
                     <input class ="form-control" type="text" name="name" id="username" placeholder="Enter new username">
-                    <small id="un"></small>
                     </div>
 
                   <!-- Email input -->
@@ -81,14 +81,14 @@ require_once(DIR.'/app/bootstrap.php');
                     </div>
 
                 <!-- Password input -->
+                   <small id="ps"></small>
                     <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text">
                           <i class="fas fa-key"></i>
                         </span>
                       </div>
-                      <input class ="form-control" type="password" name="password" placeholder="Enter new password">
-                      <!-- <small class="form-text text-muted">Choose password using at least 7 of alphanumeric characters (letters and numbers) and symbols</small> -->
+                      <input class ="form-control" type="password" name="password" id="password" placeholder="Enter new password">
                     </div>
 
                   <!-- Confirm password input -->
@@ -102,7 +102,7 @@ require_once(DIR.'/app/bootstrap.php');
                     </div>
 
                   <!-- Submit -->
-                  <button class="btn btn-block btn-info" type="submit">Register</button>
+                  <button class="btn btn-block btn-info" type="submit" name="submit">Register</button>
                 </form>
                 <!-- Form end -->
 
