@@ -1,6 +1,24 @@
 const username = document.getElementById('username');
 const password = document.getElementById('password');
 
+
+//Login button
+window.addEventListener('DOMContentLoaded', function(){
+  if(window.outerWidth < 415) {
+    document.getElementById('loginbtn').innerHTML = '<i class="fas fa-sign-in-alt"></i>';
+  } else {
+    document.getElementById('loginbtn').innerText = '...or Login here';
+  }
+})
+
+window.addEventListener('resize', function(){
+if(window.outerWidth < 415) {
+  document.getElementById('loginbtn').innerHTML = '<i class="fas fa-sign-in-alt"></i>';
+} else {
+  document.getElementById('loginbtn').innerText = '...or Login here';
+}
+})
+
 // Username field
 username.addEventListener('focus', function(){
     showMessage('un', 3);
@@ -41,3 +59,7 @@ function showMessage(id, count) {
   document.getElementById(id).className = 'form-text text-muted';
   document.getElementById(id).innerText = `Choose username using at least ${count} of alphanumeric characters (letters and numbers)`;
 }
+
+
+
+

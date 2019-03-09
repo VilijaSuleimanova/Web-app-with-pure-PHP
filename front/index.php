@@ -49,15 +49,17 @@ require_once(DIR.'/app/bootstrap.php');
       </div> -->
      <div class="container py-5">
        <div class="row">
-          <div class="col-md-6 mx-auto">
+          <div class="col-md-7 mx-auto">
             <div class="card">
-              <div class="card-header">
-                <h4 class="text-muted">Account Register</h4>
+              <div class="card-header text-muted">
+                <h4 class="d-inline-block">Account Register</h4>
+                <!-- Modal trigger -->
+                <button class="btn btn-outline-info float-right" id="loginbtn" data-toggle="modal" data-target="#loginModal"></button>
               </div>
               <div class="card-body"> 
 
                 <!-- Form start -->
-                <form action="" method="post" autocomplete="off">
+                <form action="#" method="post" autocomplete="off">
 
                 <!-- Username input -->
                   <small id="un"></small>
@@ -111,6 +113,58 @@ require_once(DIR.'/app/bootstrap.php');
           </div>
         </div>
 </section>
+
+
+<!-- Modal -->
+<div class="modal" id="loginModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+      <button class="btn btn-outline-info close" data-dismiss="modal">X</button>
+        <div class="container py-5">
+          <div class="row">
+            <div class="mx-auto">
+              <div class="card">
+                <div class="card-header text-muted">
+                  <h4 class="modal-title">LogIn</h4>
+                </div>
+              <div class="modal-body">
+              <form action="" method="post">
+
+                <!-- Username input -->
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="fas fa-user"></i>
+                    </span>
+                  </div>
+                  <input class ="form-control" type="text" name="name" id="username" placeholder="Enter username">
+                </div>
+
+                <!-- Password input -->
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">   
+                      <span class="input-group-text">
+                        <i class="fas fa-key"></i>
+                      </span>
+                    </div>
+                    <input class ="form-control" type="password" name="password" id="password" placeholder="Enter password">
+                  </div>
+                  <!-- Login button -->
+                  <button class="btn btn-block btn-info" type="submit" name="submit">Login</button>
+                  
+                 </form>
+               </div>
+              </div>
+            </div>
+           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
 <footer class="bg-info fixed-bottom text-white-50 text-center pt-3">
   <p>Copyright &copy <?=date('Y');?></p>
 </footer>
