@@ -56,7 +56,7 @@ password.addEventListener('keyup', function(){
 })
 
 function showMessage(id, count) {
-  document.getElementById(id).className = 'form-text text-muted';
+  document.getElementById(id).className = 'form-text text-muted mb-2';
   document.getElementById(id).innerText = `Choose username using at least ${count} of alphanumeric characters (letters and numbers)`;
 }
 
