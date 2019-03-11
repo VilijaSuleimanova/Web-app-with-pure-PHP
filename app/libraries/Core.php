@@ -19,7 +19,7 @@ class Core {
       $this->controller = ucwords($url[0]);
       unset($url[0]);
     } else {
-      die();
+      die('Error: no such class exists');
     }
 
     // Step 3. Require the controller
@@ -32,9 +32,9 @@ class Core {
     // Step 5. Check for second part of url
     if($url[1]) {
       $this->method = $url[1];
-      uset($url[1]);
+      unset($url[1]);
     }  else {
-      die('Error: No such page exists');
+      die('Error: No such method exists');
     }
     
     // Step6. Check for third part of url
@@ -42,10 +42,8 @@ class Core {
     $this->params = $url[2];
   } 
 
-  call_user_func_array([$this->controller, $this->method], $this->params);
+    call_user_func_array([$this->controller, $this->method], $this->params);
   }
-
- 
 
 
   // Step 1. Get url values and turn them into array
@@ -54,9 +52,9 @@ class Core {
        $url = explode('/', $_GET['url']);
        return $url;
     } else {
-      require_once DIR.'/front/views/inc/index.php';
+      $url = ['pages', 'index'];
+     return $url;
     }
-    
   }
 }
  
