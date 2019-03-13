@@ -6,5 +6,5 @@ define('DB_PASSWORD', 'mysql');
 define('DB_NAME', 'test');
 define('CHARSET', 'utf8mb4');
 
-define('TITLE', 'Web App with pure PHP');
-define('URL', 'http://localhost/Web-app-with-pure-PHP');
+define('TITLE', 'PosTube');
+define('URL', 'http://localhost/Web-app-with-pure-PHP/front');

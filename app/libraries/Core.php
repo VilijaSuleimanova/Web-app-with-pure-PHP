@@ -15,12 +15,10 @@ class Core {
     $url = $this->getProperties();
     
     // Step 2. Assign new value to the property above
-    if(file_exists(DIR.'/app/controllers/'.ucwords($url[0]).'.php')) {
+    if($url[0]) {
       $this->controller = ucwords($url[0]);
       unset($url[0]);
-    } else {
-      die('Error: no such class exists');
-    }
+    } 
 
     // Step 3. Require the controller
     require_once DIR.'/app/controllers/'.$this->controller.'.php';
@@ -33,13 +31,12 @@ class Core {
     if($url[1]) {
       $this->method = $url[1];
       unset($url[1]);
-    }  else {
-      die('Error: No such method exists');
-    }
+    } 
     
     // Step6. Check for third part of url
     if($url[2]) {
     $this->params = $url[2];
+    unset($url[2]);
   } 
 
     call_user_func_array([$this->controller, $this->method], $this->params);
@@ -52,8 +49,7 @@ class Core {
        $url = explode('/', $_GET['url']);
        return $url;
     } else {
-      $url = ['pages', 'index'];
-     return $url;
+      return $url = ['pages', 'index'];
     }
   }
 }

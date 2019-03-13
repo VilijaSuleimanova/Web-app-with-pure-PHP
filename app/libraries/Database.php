@@ -5,18 +5,10 @@ will use this file-->
 <?php
 
 class Database {
-  private $host = DB_HOST;
-  private $user = DB_USER;
-  private $password = DB_PASSWORD;
-  private $dbName = DB_NAME;
-  private $charset = CHARSET;
-
-  private $pdo;
-  private $stmt;
 
   public function __construct(){
 
-        $dsn = 'mysql:host='.$this->host.';dbname='.$this->dbName.';charset='.$this->charset;
+        $dsn = 'mysql:host='.DB_HOST.';dbname='.DB_NAME.';charset='.CHARSET;
         
         $options = [
           PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
@@ -25,7 +17,7 @@ class Database {
 
       try {
 
-        $this->pdo = new PDO($dsn, $this->user, $this->password, $options);
+        $this->pdo = new PDO($dsn, DB_USER, DB_PASSWORD, $options);
 
       } catch (PDOException $e) {
 
@@ -43,6 +35,6 @@ class Database {
 
        return $this->stmt = $this->pdo->prepare($sql);
        return $this->stmt->excecute($params);
-       
+
       }
 }
