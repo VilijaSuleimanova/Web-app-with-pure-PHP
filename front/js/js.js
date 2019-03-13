@@ -4,7 +4,7 @@ const password = document.getElementById('password');
 
 //Login button
 window.addEventListener('DOMContentLoaded', function(){
-  if(window.outerWidth < 415) {
+  if(window.outerWidth < 440) {
     document.getElementById('loginbtn').innerHTML = '<i class="fas fa-sign-in-alt"></i>';
   } else {
     document.getElementById('loginbtn').innerText = '...or Login here';

@@ -14,6 +14,7 @@
 </head>
 <body>
   <?php require DIR.'/app/views/inc/navbar.php';?>
+  <section class="container">
 
 
 
