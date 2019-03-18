@@ -13,6 +13,8 @@ class Database {
         $options = [
           PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
           PDO::ATTR_PERSISTENT         => true,
+          PDO::ATTR_EMULATE_PREPARES   => false,
+          PDO::MYSQL_ATTR_FOUND_ROWS   => true
       ];
 
       try {
@@ -31,10 +33,18 @@ class Database {
 
       }
       // Positional query
+
+
       public function queryPositional($sql, $params) {
 
-       return $this->stmt = $this->pdo->prepare($sql);
-       return $this->stmt->excecute($params);
+      return $this->stmt = $this->pdo->prepare($sql);
+      return $this->stmt->excecute([$params]);
+      return $this->stmt->fetchAll(PDO::FETCH_OBJ);
 
       }
+
+      public function rowCount(){
+        return $this->stmt->rowCount();
+      }
+
 }
