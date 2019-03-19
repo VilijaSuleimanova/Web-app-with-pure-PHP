@@ -1,11 +1,11 @@
 <?php
 
  class Pages extends Controller {
-   
-  private $db;
+
 
   public function __construct(){
-    $this->db = new Database;
+
+    $this->pageModel = $this->model('Page');
 
      
   }
@@ -56,14 +56,32 @@
       }
       // Email Validation
       if(empty($_POST['email'])) {
+
         $data['email_err'] = '<small class="alert alert-danger">Email must be provided</small>';
-      } 
+
+      } else {
+
+        $email = [$_POST['email']];
+
+        if($this->pageModel->emailPresenceCheck($email)) {
+
+        $data['email_err'] = '<small class="alert alert-danger">Email provided is already taken</small>';
+
+        }
+      }
+
+
+
       // Password Validation
       if(empty($_POST['password'])) {
         $data ['password_err'] = '<small class="alert alert-danger">Password must be provided</small>';
-      } elseif(strlen($_POST['password']) < 7){
+      } else {
+        if(strlen($_POST['password']) < 7){
         $data['password_err'] = '<small class="alert alert-danger">Password is too short</small>';
+        }
       }
+      
+      
       // Password Confirm Validation
       if(empty($_POST['confirm_password'])) {
         $data ['confirm_password_err'] = '<small class="alert alert-danger">Password confirm must be provided</small>';
@@ -71,18 +89,34 @@
         $data['confirm_password_err'] = '<small class="alert alert-danger">Passwords must match</small>';
       }
 
+      // Email presence check
       if(empty($data['name_err']) && empty($data['email_err']) && empty($data['password_err']) && empty($data['confirm_password_err'])) {
-      $sql = "SELECT * FROM Admin WHERE Email = ? ";
-      $params = 'john@john.com';
+        
+        // Registration
+      $_POST['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-      print_r($this->db->queryPositional($sql, $params));
-      var_dump($this->db->rowCount());
+      $values = [$_POST['name'], $_POST['email'], $_POST['password']];
 
+      $this->pageModel->register($values);
+      
+      redirect('pages/login');
+
+       } else {
+
+          
+
+
+
+          // $this->db->queryPositional("INSERT INTO `Admin`(`Username`, `Email`, `Password`) VALUES (?,?,?", )
       }
+
+      
     }
 
      $this->view('register', $data);
+
   } 
+
   
 
   public function login(){

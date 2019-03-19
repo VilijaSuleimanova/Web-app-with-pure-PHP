@@ -26,25 +26,25 @@ class Database {
         throw new PDOException($e->getMessage(), (int)$e->getCode());
       }
   }
-    // Simple query
-      public function query($sql) {
 
-      return $this->stmt = $this->pdo->query($sql);
+   // Simple query
+   public function query($sql) {
 
-      }
-      // Positional query
+    return $this->stmt = $this->pdo->query($sql);
+
+    }
+    // Positional query
 
 
-      public function queryPositional($sql, $params) {
+    public function queryPositional($sql, $params) {
 
-      return $this->stmt = $this->pdo->prepare($sql);
-      return $this->stmt->excecute([$params]);
-      return $this->stmt->fetchAll(PDO::FETCH_OBJ);
+      $this->stmt = $this->pdo->prepare($sql);
+      return $this->stmt->execute($params);
+    }
 
-      }
-
-      public function rowCount(){
-        return $this->stmt->rowCount();
-      }
+    public function rowCount(){
+      
+      return $this->stmt->rowCount();
+    }
 
 }
