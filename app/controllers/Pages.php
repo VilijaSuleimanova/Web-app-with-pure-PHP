@@ -11,32 +11,43 @@
   }
 
   public function index(){
+    var_dump($_SESSION['name']);
+
+    $_SESSION['name'];
 
     $data = [
       'title' => 'PosTube',
     ];
     
-    $this->view('index', $data);
+    $this->view('pages/index', $data);
   }
   
   public function about(){
 
+    $_SESSION['name'];
+
     $data = [
       'title' => 'This is about page' 
     ];
-    $this->view('about', $data);
+    $this->view('pages/about', $data);
  }
 
   public function contact(){
+
+    $_SESSION['name'];
+
     $data = [
       'title' => 'This is contact page' 
     ];
-    $this->view('contact', $data);
+    $this->view('pages/contact', $data);
   }
 
   public function register(){
-    
 
+    $_SESSION['name'];
+    
+    var_dump($_SESSION['name']);
+    var_dump($_POST['name']);
 
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -98,28 +109,29 @@
       $values = [$_POST['name'], $_POST['email'], $_POST['password']];
 
       $this->pageModel->register($values);
+
+      $_SESSION['registered'] = true;
       
       redirect('pages/login');
 
+
        } else {
 
-          
-
-
-
-          // $this->db->queryPositional("INSERT INTO `Admin`(`Username`, `Email`, `Password`) VALUES (?,?,?", )
       }
 
       
     }
 
-     $this->view('register', $data);
+     $this->view('pages/register', $data);
 
   } 
 
   
 
   public function login(){
+
+    var_dump($_SESSION['name']);
+   
 
 
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -137,10 +149,14 @@
         $data ['login_password_err'] = '<small class="alert alert-danger">Password must be provided</small>';
       }
 
+      
+      $_SESSION['name'] = $_POST['login_name'];
+      unset($_SESSION['registered']);
+      redirect('admin/index');
     };
 
   
-    $this->view('login', $data);
+    $this->view('pages/login', $data);
 
 
   }

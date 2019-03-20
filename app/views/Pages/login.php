@@ -1,6 +1,7 @@
 <?php require_once DIR.'/app/views/inc/header.php';?>
 
 <div class="container py-5">
+<?= isset($_SESSION['registered']) ? '<p class="alert alert-success">You are now registered and can login!</p>' : '' ; ?>
   <div class="row">
     <div class="col-md-7 mx-auto">
       <div class="card">

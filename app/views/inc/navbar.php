@@ -19,12 +19,22 @@
         <!-- Right side menu -->
         <div class="collapse navbar-collapse justify-content-end" id="navlists">
           <ul class="navbar-nav">
+          <?php if(is_null($_SESSION['name'])) : ?>
             <li class="nav-item">
               <a class="nav-link" href="<?=URL?>/?url=pages/register">Register</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="<?=URL?>/?url=pages/login">Login</a>
             </li>
+            <?php else : ?>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Hello <?=$_SESSION['name'];?></a>
+            </li>
+             <li class="nav-item">
+                <a class="nav-link" href="<?=URL?>/?url=admin/logout">Logout</a>
+              </li>
+            <?php endif; ?>
+
           </ul>
         </div>
       </div>

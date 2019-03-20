@@ -17,7 +17,7 @@ class Controller {
   // Load view
   public function view($view, $data =[]) {
   // Require view file
-  require_once DIR.'/app/views/Pages/'.$view.'.php';
+  require_once DIR.'/app/views/'.$view.'.php';
   }
   
 }
