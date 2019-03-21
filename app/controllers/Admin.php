@@ -4,7 +4,11 @@ class Admin extends Controller {
 
   public function index() {
 
-    var_dump($_SESSION['name']);
+    $_SESSION['name'];
+
+    if(is_null($_SESSION['name'])) {
+      exit;
+    }
     
     $data = [
       'user' => $_SESSION['name']
