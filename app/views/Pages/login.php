@@ -1,7 +1,7 @@
 <?php require_once DIR.'/app/views/inc/header.php';?>
 
 <div class="container py-5">
-<?= isset($_SESSION['registered']) ? '<p class="alert alert-success">You are now registered and can login!</p>' : '' ; ?>
+<?= $data['registered']; ?>
   <div class="row">
     <div class="col-md-7 mx-auto">
       <div class="card">
@@ -21,7 +21,7 @@
                   <i class="fas fa-user"></i>
                 </span>
                 </div>
-              <input class ="form-control" type="text" name="login_name" value="<?=$_POST['login_name'];?>" placeholder="Enter username">
+              <input class ="form-control" type="text" name="name" value="<?=$_POST['loginName'];?>" placeholder="Enter username">
             </div>
 
           <!-- Password input -->
@@ -32,7 +32,7 @@
                     <i class="fas fa-key"></i>
                   </span>
                 </div>
-                <input class ="form-control" type="password" name="login_password" value="<?=$_POST['login_password'];?>" placeholder="Enter password">
+                <input class ="form-control" type="password" name="password" value="<?=$_POST['loginPassword'];?>" placeholder="Enter password">
               </div>
 
             <!-- Submit -->

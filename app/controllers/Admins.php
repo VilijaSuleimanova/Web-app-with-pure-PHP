@@ -1,6 +1,12 @@
 <?php
 
-class Admin extends Controller {
+class Admins extends Controller {
+
+  public function __construct(){
+
+    $this->pageModel = $this->model('Admin');
+
+  }
 
   public function index() {
 
@@ -14,7 +20,7 @@ class Admin extends Controller {
       'user' => $_SESSION['name']
     ];
 
-      $this->view('admin/index', $data);
+      $this->view('admins/index', $data);
 
   }
 

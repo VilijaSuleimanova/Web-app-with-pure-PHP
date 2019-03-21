@@ -31,7 +31,7 @@
               <a class="nav-link" href="#">Hello <?=$_SESSION['name'];?></a>
             </li>
              <li class="nav-item">
-                <a class="nav-link" href="<?=URL?>/?url=admin/logout">Logout</a>
+                <a class="nav-link" href="<?=URL?>/?url=admins/logout">Logout</a>
               </li>
             <?php endif; ?>
 

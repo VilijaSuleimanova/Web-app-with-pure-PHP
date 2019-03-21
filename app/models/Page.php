@@ -15,6 +15,7 @@ class Page {
    if($this->db->rowCount()){
 
      return true;
+
    } else {
 
      return false;
@@ -22,9 +23,41 @@ class Page {
 
   }
 
+  public function userNamePresenceCheck($userName) {
+
+    $this->db->queryPositional("SELECT * FROM `Admin` WHERE Username = ?", $userName);
+ 
+    if($this->db->rowCount()){
+ 
+      return true;
+      
+    } else {
+ 
+      return false;
+    }
+ 
+   }
 
   public function register($values){
+
     return $this->db->queryPositional("INSERT INTO `Admin` (`Username`, `Email`, `Password`) VALUES (?,?,?)", $values);
 
   }
+
+  public function passwordMatchCheck($values) {
+
+    $this->db->queryPositional("SELECT * FROM `Admin` WHERE `Username` = ? AND `Password` = ?", $values);
+
+    if($this->db->rowCount()){
+ 
+      return true;
+      
+    } else {
+ 
+      return false;
+    }
+
+  }
+
+
 }
