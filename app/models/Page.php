@@ -44,18 +44,42 @@ class Page {
 
   }
 
-  public function passwordMatchCheck($values) {
+  public function passwordMatchCheck($loginName, $loginPassword) {
 
-    $this->db->queryPositional("SELECT * FROM `Admin` WHERE `Username` = ? AND `Password` = ?", $values);
+    $loginName = [$loginName];
 
-    if($this->db->rowCount()){
- 
+    $this->db->queryPositional("SELECT `Password` FROM `Admin` WHERE `Username` = ?", $loginName);
+
+    while($passValue = $this->db->fetch()){
+
+      var_dump($jist = $passValue['Password']); 
+    };
+
+
+    
+
+    if(password_verify($loginPassword, $jist)){
+
       return true;
-      
-    } else {
- 
+
+    }  else {
+
       return false;
+
     }
+
+    // $values = [$loginName, $loginPassword];
+
+    // $this->db->queryPositional("SELECT * FROM `Admin` WHERE `Username` = ? AND `Password` = ?", $values);
+
+    // if($this->db->rowCount()){
+ 
+    //   return true;
+      
+    // } else {
+ 
+    //   return false;
+    // }
 
   }
 

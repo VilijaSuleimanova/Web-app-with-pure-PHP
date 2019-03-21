@@ -21,7 +21,7 @@
                   <i class="fas fa-user"></i>
                 </span>
                 </div>
-              <input class ="form-control" type="text" name="name" value="<?=$_POST['loginName'];?>" placeholder="Enter username">
+              <input class ="form-control" type="text" name="loginName" value="<?=$_POST['loginName'];?>" placeholder="Enter username">
             </div>
 
           <!-- Password input -->
@@ -32,7 +32,7 @@
                     <i class="fas fa-key"></i>
                   </span>
                 </div>
-                <input class ="form-control" type="password" name="password" value="<?=$_POST['loginPassword'];?>" placeholder="Enter password">
+                <input class ="form-control" type="password" name="loginPassword" value="<?=$_POST['loginPassword'];?>" placeholder="Enter password">
               </div>
 
             <!-- Submit -->

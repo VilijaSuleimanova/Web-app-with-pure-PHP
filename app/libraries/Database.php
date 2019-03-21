@@ -47,4 +47,8 @@ class Database {
       return $this->stmt->rowCount();
     }
 
+    public function fetch(){
+      return $this->stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
 }

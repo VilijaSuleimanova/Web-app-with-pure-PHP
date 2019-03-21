@@ -149,9 +149,9 @@
 
   public function login(){
 
-    var_dump($_SESSION['name']);
+    $_SESSION['name'];
 
-    var_dump($_SESSION['registered']);
+    $_SESSION['registered'];
 
     if(isset($_SESSION['registered'])) {
 
@@ -161,70 +161,59 @@
 
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
+     
+
       if(empty($_POST['loginName'])) {
 
        $data['login_name_err'] = '<small class="alert alert-danger">Username must be provided</small>';
 
-      } 
+      } else {
+
+        $userName = [$_POST['loginName']];
+
+        if(!$this->pageModel->userNamePresenceCheck($userName)) {
+
+          $data['login_name_err'] = '<small class="alert alert-danger">No such Username exists</small>';
+
+        } else {
+
+          $loginName = $_POST['loginName']; 
+          
+          $loginPassword = $_POST['loginPassword'];
+
+          if(!$this->pageModel->passwordMatchCheck($loginName, $loginPassword)){
+
+            $data['login_password_err'] = '<small class="alert alert-danger">Password does not match</small>';
+
+          } else {
+
+            $_SESSION['name'] = $_POST['loginName'];
+
+            if($_SESSION['registered']) {
+
+              unset($_SESSION['registered']);
+
+            }
+            
+            redirect('admins/index');
+
+          }     
+
+        }
+
+      }
 
       if(empty($_POST['loginPassword'])) {
 
         $data['login_password_err'] = '<small class="alert alert-danger">Password must be provided</small>';
-        
-
-      // } else {
-
-      //   $_POST['loginPassword'] = password_hash($_POST['loginPassword'], PASSWORD_DEFAULT);
-
-      //   $values = [$_POST['loginName'], $_POST['loginPassword']];
-
-      //   if($this->pageModel->passwordMatchCheck($values)){
-
-      //     $data['login_password_err'] = '';
-
-      //   } else {
-
-      //     $data['login_password_err'] = '<small class="alert alert-danger">Password does not match</small>';
-
-      //   }
-
-      }
-
-      // if(!empty($_POST['loginName']) && !empty($_POST['loginPassword'])) {
-        
-      //   $userName = [$_POST['loginName']];
-
-      //   if(!$this->pageModel->userNamePresenceCheck($userName)) {
-
-      //     $data['login_name_err'] = '<small class="alert alert-danger">No such Username exists</small>';
-
-      //   } 
-
-      // }
-
-      if(empty($data['login_name_err'] && empty($data['login_password_err']))) {
-
-         
-        // $_SESSION['name'] = $_POST['loginName'];
-
-        // unset($_SESSION['registered']);
-
-        redirect('admins/index');
-        
-      }
-
       
+      } 
       
-
     }
-
   
     $this->view('pages/login', $data);
 
-
   }
-
-
 
 
 }
