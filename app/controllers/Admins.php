@@ -4,7 +4,7 @@ class Admins extends Controller {
 
   public function __construct(){
 
-    $this->pageModel = $this->model('Admin');
+    $this->adminModel = $this->model('Admin');
 
   }
 
@@ -12,15 +12,20 @@ class Admins extends Controller {
 
     $_SESSION['name'];
 
+    $_SESSION['admin_id']= $this->adminModel->getAdminId($_SESSION['name']);
+
     if(is_null($_SESSION['name'])) {
       exit;
     }
     
+    var_dump($posts = $this->adminModel->loadPosts($_SESSION['admin_id']));
+
     $data = [
-      'user' => $_SESSION['name']
+
+      'posts' => $posts
     ];
 
-      $this->view('admins/index', $data);
+    $this->view('admins/index', $data);
 
   }
 
@@ -28,11 +33,39 @@ class Admins extends Controller {
     
     $_SESSION['name'];
 
-    redirect('pages/index');
+    $_SESSION['admin_id'];
+
+    if(is_null($_SESSION['name'])) {
+      
+      exit;
+    }
+
     unset($_SESSION['name']);
+
+    unset($_SESSION['admin_id']);
+
+
+    redirect('pages/index');
 
   }
 
-  
+  public function create(){
+   
+    $_SESSION['name'];
+
+    $_SESSION['admin_id'];
+
+    if(is_null($_SESSION['name'])) {
+      exit;
+    }
+
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+      $this->adminModel->savePost($_SESSION['admin_id'], $_POST['title'], $_POST['content']);
+    }
+
+    $this->view('admins/create', $data);
+
+  }
 }
 

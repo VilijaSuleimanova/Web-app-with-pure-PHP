@@ -1,5 +1,5 @@
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-sm navbar-dark bg-info">
+  <nav class="navbar navbar-expand-md navbar-dark bg-info mb-3">
     <div class="container">
       <a class="navbar-brand" href="<?=URL?>"><?=TITLE?></a>
       <button class="navbar-toggler" data-toggle="collapse" data-target="#navlists"><i class="fas fa-bars"></i></button>
@@ -19,20 +19,27 @@
         <!-- Right side menu -->
         <div class="collapse navbar-collapse justify-content-end" id="navlists">
           <ul class="navbar-nav">
+
           <?php if(is_null($_SESSION['name'])) : ?>
+
             <li class="nav-item">
               <a class="nav-link" href="<?=URL?>/?url=pages/register">Register</a>
             </li>
+
             <li class="nav-item">
               <a class="nav-link" href="<?=URL?>/?url=pages/login">Login</a>
             </li>
+
             <?php else : ?>
+
             <li class="nav-item">
-              <a class="nav-link" href="#">Hello <?=$_SESSION['name'];?></a>
+              <a class="nav-link" href="<?=URL?>/?url=admins/index"><?=$_SESSION['name'];?>'s Dashboard</a>
             </li>
+
              <li class="nav-item">
                 <a class="nav-link" href="<?=URL?>/?url=admins/logout">Logout</a>
               </li>
+
             <?php endif; ?>
 
           </ul>

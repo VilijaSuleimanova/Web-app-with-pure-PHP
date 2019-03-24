@@ -13,8 +13,8 @@ class Database {
         $options = [
           PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
           PDO::ATTR_PERSISTENT         => true,
-          PDO::ATTR_EMULATE_PREPARES   => false,
-          PDO::MYSQL_ATTR_FOUND_ROWS   => true
+          // PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+          PDO::ATTR_EMULATE_PREPARES =>false
       ];
 
       try {
@@ -48,7 +48,9 @@ class Database {
     }
 
     public function fetch(){
-      return $this->stmt->fetch(PDO::FETCH_ASSOC);
+
+      return $this->stmt->fetchAll(PDO::FETCH_ASSOC);
+
     }
 
 }

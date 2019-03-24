@@ -12,15 +12,20 @@
 
   public function index(){
 
-    var_dump($_SESSION['name']);
-
     $_SESSION['name'];
+
+    // var_dump($this->pageModel->showPosts());
+
+    
 
     $data = [
 
       'title' => 'PosTube',
 
+      'posts' => $this->pageModel->showPosts()
+
     ];
+    
     
     $this->view('pages/index', $data);
 

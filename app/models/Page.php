@@ -46,19 +46,19 @@ class Page {
 
   public function passwordMatchCheck($loginName, $loginPassword) {
 
-    $loginName = [$loginName];
+   $loginNamee = [$loginName];
 
-    $this->db->queryPositional("SELECT `Password` FROM `Admin` WHERE `Username` = ?", $loginName);
+   $this->db->queryPositional("SELECT `Password` FROM `Admin` WHERE `Username` = ?", $loginNamee);
 
-    while($passValue = $this->db->fetch()){
-
-      var_dump($jist = $passValue['Password']); 
-    };
+   $this->result =$this->db->fetch();
 
 
-    
+    foreach($this->result as $this->res => $this->r) {
 
-    if(password_verify($loginPassword, $jist)){
+      $this->r;
+    }
+
+    if(password_verify($loginPassword, $this->r['Password'])){
 
       return true;
 
@@ -68,20 +68,16 @@ class Page {
 
     }
 
-    // $values = [$loginName, $loginPassword];
-
-    // $this->db->queryPositional("SELECT * FROM `Admin` WHERE `Username` = ? AND `Password` = ?", $values);
-
-    // if($this->db->rowCount()){
- 
-    //   return true;
-      
-    // } else {
- 
-    //   return false;
-    // }
-
   }
 
+  public function showPosts() {
 
+   return  $this->results=$this->db->query("SELECT *
+                                            FROM `Posts`
+                                            INNER JOIN `Admin`
+                                            ON Posts.Admin_Id = Admin.id
+                                            ORDER BY Posts.Created_at DESC
+                                            ");
+  }
+     
 }
